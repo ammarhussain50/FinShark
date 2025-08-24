@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { CompanySearch } from './company'
+import type { CompanyProfile, CompanySearch } from './company'
 
 interface SearchResponse {
       data : CompanySearch[];
@@ -21,3 +21,18 @@ export const SearchCompanies = async(query : string) => {
       }
       
 }
+
+
+
+
+
+export const getCompanyProfile = async (query: string) => {
+  try {
+    const data = await axios.get<CompanyProfile[]>(
+      `https://financialmodelingprep.com/api/v3/profile/${query}?apikey=${import.meta.env.VITE_APP_API_KEY}`
+    );
+    return data;
+  } catch (error: any) {
+    console.log("error message: ", error.message);
+  }
+};

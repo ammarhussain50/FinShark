@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { SearchCompanies } from './api.tsx';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './Routes/Routes.tsx';
 
 (async () => {
   try {
@@ -16,6 +18,6 @@ import { SearchCompanies } from './api.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+     <RouterProvider router={router} />
   </StrictMode>,
 )
