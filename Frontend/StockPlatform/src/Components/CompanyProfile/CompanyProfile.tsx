@@ -4,6 +4,7 @@ import { useOutletContext } from "react-router-dom";
 import { getKeyMetrics } from "../../api";
 import RatioList from "../RatioList/RatioList";
 import type { CompanyKeyMetrics } from "../../company";
+import Spinner from "../Spinners/Spinner";
 
 
 type Props = {};
@@ -11,27 +12,27 @@ type Props = {};
 const tableConfig = [
   {
     label: "Market Cap",
-    render: (company: CompanyKeyMetrics) => company.marketCapTTM,
+    render: (company: CompanyKeyMetrics) => company.marketCap,
   },
   {
     label: "Current Ratio",
-    render: (company: CompanyKeyMetrics) => company.currentRatioTTM,
+    render: (company: CompanyKeyMetrics) => company.currentRatio,
   },
   {
     label: "Return On Equity",
-    render: (company: CompanyKeyMetrics) => company.roeTTM,
+    render: (company: CompanyKeyMetrics) => company.returnOnEquity,
   },
   {
     label: "Cash Per Share",
-    render: (company: CompanyKeyMetrics) => company.cashPerShareTTM,
+    render: (company: CompanyKeyMetrics) => company.returnOnAssets,
   },
   {
     label: "Current Ratio",
-    render: (company: CompanyKeyMetrics) => company.currentRatioTTM,
+    render: (company: CompanyKeyMetrics) => company.currentRatio,
   },
   {
     label: "Return On Equity",
-    render: (company: CompanyKeyMetrics) => company.roeTTM,
+    render: (company: CompanyKeyMetrics) => company.returnOnEquity,
   },
 ];
 
@@ -52,7 +53,7 @@ const CompanyProfile = (props: Props) => {
           <RatioList config={tableConfig} data={companyData} />
         </>
       ) : (
-        <h1>No data found</h1>
+        <Spinner/>
       )}
     </>
   );
