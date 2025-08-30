@@ -107,18 +107,17 @@ export interface CompanyKeyRatios {
 }
 
 export interface CompanyIncomeStatement {
-  date: string;
+ date: string;
   symbol: string;
   reportedCurrency: string;
   cik: string;
-  fillingDate: string;
+  filingDate: string;
   acceptedDate: string;
-  calendarYear: string;
+  fiscalYear: string;
   period: string;
   revenue: number;
   costOfRevenue: number;
   grossProfit: number;
-  grossProfitRatio: number;
   researchAndDevelopmentExpenses: number;
   generalAndAdministrativeExpenses: number;
   sellingAndMarketingExpenses: number;
@@ -126,25 +125,27 @@ export interface CompanyIncomeStatement {
   otherExpenses: number;
   operatingExpenses: number;
   costAndExpenses: number;
+  netInterestIncome: number;
   interestIncome: number;
   interestExpense: number;
   depreciationAndAmortization: number;
   ebitda: number;
-  ebitdaratio: number;
+  ebit: number;
+  nonOperatingIncomeExcludingInterest: number;
   operatingIncome: number;
-  operatingIncomeRatio: number;
   totalOtherIncomeExpensesNet: number;
   incomeBeforeTax: number;
-  incomeBeforeTaxRatio: number;
   incomeTaxExpense: number;
+  netIncomeFromContinuingOperations: number;
+  netIncomeFromDiscontinuedOperations: number;
+  otherAdjustmentsToNetIncome: number;
   netIncome: number;
-  netIncomeRatio: number;
+  netIncomeDeductions: number;
+  bottomLineNetIncome: number;
   eps: number;
-  epsdiluted: number;
+  epsDiluted: number;
   weightedAverageShsOut: number;
   weightedAverageShsOutDil: number;
-  link: string;
-  finalLink: string;
 }
 
 export interface CompanyBalanceSheet {
@@ -152,17 +153,22 @@ export interface CompanyBalanceSheet {
   symbol: string;
   reportedCurrency: string;
   cik: string;
-  fillingDate: string;
+  filingDate: string;
   acceptedDate: string;
-  calendarYear: string;
+  fiscalYear: string;
   period: string;
+
   cashAndCashEquivalents: number;
   shortTermInvestments: number;
   cashAndShortTermInvestments: number;
   netReceivables: number;
+  accountsReceivables: number;
+  otherReceivables: number;
   inventory: number;
+  prepaids: number;
   otherCurrentAssets: number;
   totalCurrentAssets: number;
+
   propertyPlantEquipmentNet: number;
   goodwill: number;
   intangibleAssets: number;
@@ -173,12 +179,18 @@ export interface CompanyBalanceSheet {
   totalNonCurrentAssets: number;
   otherAssets: number;
   totalAssets: number;
+
+  totalPayables: number;
   accountPayables: number;
+  otherPayables: number;
+  accruedExpenses: number;
   shortTermDebt: number;
+  capitalLeaseObligationsCurrent: number;
   taxPayables: number;
   deferredRevenue: number;
   otherCurrentLiabilities: number;
   totalCurrentLiabilities: number;
+
   longTermDebt: number;
   deferredRevenueNonCurrent: number;
   deferredTaxLiabilitiesNonCurrent: number;
@@ -187,21 +199,22 @@ export interface CompanyBalanceSheet {
   otherLiabilities: number;
   capitalLeaseObligations: number;
   totalLiabilities: number;
+
+  treasuryStock: number;
   preferredStock: number;
   commonStock: number;
   retainedEarnings: number;
+  additionalPaidInCapital: number;
   accumulatedOtherComprehensiveIncomeLoss: number;
-  othertotalStockholdersEquity: number;
+  otherTotalStockholdersEquity: number;
   totalStockholdersEquity: number;
   totalEquity: number;
-  totalLiabilitiesAndStockholdersEquity: number;
   minorityInterest: number;
   totalLiabilitiesAndTotalEquity: number;
+
   totalInvestments: number;
   totalDebt: number;
   netDebt: number;
-  link: string;
-  finalLink: string;
 }
 
 export interface CompanyCashFlow {
@@ -209,10 +222,11 @@ export interface CompanyCashFlow {
   symbol: string;
   reportedCurrency: string;
   cik: string;
-  fillingDate: string;
+  filingDate: string;
   acceptedDate: string;
-  calendarYear: string;
+  fiscalYear: string;
   period: string;
+
   netIncome: number;
   depreciationAndAmortization: number;
   deferredIncomeTax: number;
@@ -223,28 +237,40 @@ export interface CompanyCashFlow {
   accountsPayables: number;
   otherWorkingCapital: number;
   otherNonCashItems: number;
+
   netCashProvidedByOperatingActivities: number;
+
   investmentsInPropertyPlantAndEquipment: number;
   acquisitionsNet: number;
   purchasesOfInvestments: number;
   salesMaturitiesOfInvestments: number;
-  otherInvestingActivites: number;
-  netCashUsedForInvestingActivites: number;
-  debtRepayment: number;
-  commonStockIssued: number;
+  otherInvestingActivities: number;
+  netCashProvidedByInvestingActivities: number;
+
+  netDebtIssuance: number;
+  longTermNetDebtIssuance: number;
+  shortTermNetDebtIssuance: number;
+  netStockIssuance: number;
+  netCommonStockIssuance: number;
+  commonStockIssuance: number;
   commonStockRepurchased: number;
-  dividendsPaid: number;
-  otherFinancingActivites: number;
-  netCashUsedProvidedByFinancingActivities: number;
+  netPreferredStockIssuance: number;
+  netDividendsPaid: number;
+  commonDividendsPaid: number;
+  preferredDividendsPaid: number;
+  otherFinancingActivities: number;
+  netCashProvidedByFinancingActivities: number;
+
   effectOfForexChangesOnCash: number;
   netChangeInCash: number;
   cashAtEndOfPeriod: number;
   cashAtBeginningOfPeriod: number;
+
   operatingCashFlow: number;
   capitalExpenditure: number;
   freeCashFlow: number;
-  link: string;
-  finalLink: string;
+  incomeTaxesPaid: number;
+  interestPaid: number;
 }
 
 
@@ -297,5 +323,14 @@ export interface CompanyKeyMetrics {
   tangibleAssetValue: number;
   netCurrentAssetValue: number;
 }
+
+
+export interface CompanyCompData {
+  symbol: string;
+  companyName: string;
+  price: number;
+  mktCap: number;
+}
+
 
 

@@ -24,12 +24,12 @@ const config = [
   },
   {
     label: "Other Investing Cashflow",
-    render: (company: CompanyCashFlow) => company.otherInvestingActivites,
+    render: (company: CompanyCashFlow) => company.otherInvestingActivities,
   },
   {
     label: "Debt Cashflow",
     render: (company: CompanyCashFlow) =>
-      company.netCashUsedProvidedByFinancingActivities,
+      company.netCashProvidedByInvestingActivities,
   },
   {
     label: "CapEX",
